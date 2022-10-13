@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.audio {
+  padding-top: 100px;
+  background-color: red;
+}
