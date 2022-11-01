@@ -67,25 +67,22 @@ const Tune: React.FC<{}> = (props) => {
   return (
     <div>
       <div className="audio" ref={audioShow}></div>
-      <div className="tuneNote">{displayNote}</div>
-      <div className="tuner">{displayCents} cents</div>
-      <div className="tuner">{displayTune}</div>
-      <div className="tuner">{isTune}</div>
-      <button type="button" onClick={initAudioStream}>
-        Start
-      </button>
-      <button type="button" onClick={endAudioStream}>
-        End
-      </button>
-      <div className="animate">
-        <div>
-          <motion.div className="animate-tuner" animate={{ rotate }} transition={{ type: 'spring' }} />
+      <div className="container">
+        <div className="tuneNote">{displayNote}</div>
+        <div className="animate">
+          <div>
+            <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
+          </div>
         </div>
-        <label>
-          <Input value={displayCents} set={setDisplayCents} min={-180} max={180}>
-            '
-          </Input>
-        </label>
+        <div className="tuner">{displayCents} cents</div>
+        <div className="tuner">{displayTune}</div>
+        <div className="tuner">{isTune}</div>
+        <button type="button" onClick={initAudioStream}>
+          Start
+        </button>
+        <button type="button" onClick={endAudioStream}>
+          End
+        </button>
       </div>
     </div>
   )
