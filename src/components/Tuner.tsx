@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { getTuningInfo, initAudio, initTuner } from '@ddlab/tuner'
 import { lookup } from 'dns'
 import { motion } from 'framer-motion'
@@ -87,4 +87,4 @@ const Tune: React.FC<{}> = (props) => {
   )
 }
 
-export default Tune
+export default memo(Tune)
