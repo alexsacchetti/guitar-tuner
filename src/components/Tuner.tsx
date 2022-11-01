@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { getTuningInfo, initAudio, initTuner } from '@ddlab/tuner'
 import { lookup } from 'dns'
 import { motion } from 'framer-motion'
-import { Input } from './Input'
 
 const Tune: React.FC<{}> = (props) => {
   const [displayNote, setDisplayNote] = useState<string>('No Note Yet')
