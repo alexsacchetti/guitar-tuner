@@ -78,12 +78,14 @@ const Tune: React.FC<{}> = (props) => {
             {displayCents} cents <br></br>
             {isTune}
           </div>
-          <button type="button" onClick={initAudioStream}>
-            Start
-          </button>
-          <button type="button" onClick={endAudioStream}>
-            End
-          </button>
+          <div className="button-container">
+            <button className="button" type="button" onClick={initAudioStream}>
+              Start
+            </button>
+            <button className="button" type="button" onClick={endAudioStream}>
+              End
+            </button>
+          </div>
         </div>
       </div>
     </div>
