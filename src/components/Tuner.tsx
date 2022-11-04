@@ -4,7 +4,7 @@ import { lookup } from 'dns'
 import { motion } from 'framer-motion'
 
 const Tune: React.FC<{}> = (props) => {
-  const [displayNote, setDisplayNote] = useState<string>('No Note Yet')
+  const [displayNote, setDisplayNote] = useState<string>('...')
   const [displayCents, setDisplayCents] = useState<number>(0)
   const [displayTune, setDisplayTune] = useState<string>('Not Tuned Yet')
   const [loopId, setLoopId] = useState<any>('')
@@ -13,7 +13,7 @@ const Tune: React.FC<{}> = (props) => {
   const [deltaState, setDeltaState] = useState<any>()
   const [rotate, setRotate] = useState<any>('')
 
-  const audioShow = useRef(null)
+  // const audioShow = useRef(null)
 
   const initAudioStream = async () => {
     const { getFreqData, deltaFreq } = await initAudio()
@@ -66,7 +66,7 @@ const Tune: React.FC<{}> = (props) => {
   return (
     <div>
       <div className="frame">
-        <div className="audio" ref={audioShow}></div>
+        {/* <div className="audio" ref={audioShow}></div> */}
         <div className="container">
           <div className="tuneNote">{displayNote}</div>
           <div className="animate">
@@ -74,8 +74,10 @@ const Tune: React.FC<{}> = (props) => {
               <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
             </div>
           </div>
-          <div className="tuner">{displayCents} cents</div>
-          <div className="tuner">{isTune}</div>
+          <div className="tuner">
+            {displayCents} cents <br></br>
+            {isTune}
+          </div>
           <button type="button" onClick={initAudioStream}>
             Start
           </button>
