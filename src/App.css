@@ -1,3 +1,7 @@
+body {
+  background-color: slategray;
+}
+
 .frame {
   display: flex;
   flex-direction: column;
@@ -16,7 +20,8 @@
   align-items: center;
   align-content: center;
   width: fit-content;
-  /* border: 3px dotted red; */
+  border: 5px solid rgb(152, 152, 152, 0.5);
+  border-radius: 5px;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
@@ -36,7 +41,7 @@
   padding-top: 25px;
   font-size: small;
   font-weight: bolder;
-  background-color: rgb(110, 148, 152);
+  background-color: rgb(110, 122, 152);
 }
 .tuneNote {
   display: flex;
@@ -49,7 +54,7 @@
   padding-bottom: 15px;
   font-size: 50px;
   font-weight: bolder;
-  background-color: rgb(110, 148, 152);
+  background-color: rgb(110, 122, 152);
 }
 
 .animate {
@@ -70,6 +75,11 @@
   border-bottom-right-radius: 120px;
   border-bottom-left-radius: 120px;
 }
+
+.triangle-up::after {
+  background-color: green;
+}
+
 .button-container {
   display: flex;
   justify-content: space-evenly;
@@ -96,6 +106,6 @@
 
 .button:focus {
   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    0px 0px 0px 3.5px rgba(28, 28, 28, 0.5);
   outline: 0;
 }
