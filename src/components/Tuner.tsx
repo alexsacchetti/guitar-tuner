@@ -74,7 +74,7 @@ const Tune: React.FC<{}> = (props) => {
               <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
             </div>
           </div>
-          <div className="tuner">
+          <div className="tunerInfo">
             {displayCents} cents <br></br>
             {isTune}
           </div>
@@ -83,7 +83,7 @@ const Tune: React.FC<{}> = (props) => {
               Start
             </button>
             <button className="button" type="button" onClick={endAudioStream}>
-              End
+              Stop
             </button>
           </div>
         </div>
