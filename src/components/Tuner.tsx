@@ -74,7 +74,11 @@ const Tune: React.FC<{}> = (props) => {
           <div className="tuner-frame">
             <div className="animate">
               <div>
-                <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
+                <motion.div
+                  className={`triangle-up ${isTune ? 'green' : ''}`}
+                  animate={{ rotate }}
+                  transition={{ type: 'spring' }}
+                />
               </div>
             </div>
           </div>

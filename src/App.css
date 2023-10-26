@@ -90,8 +90,12 @@ body {
   transform: translateX(-50%); /* Centers the triangle */
 }
 
-.triangle-up::after {
-  background-color: green;
+.triangle-up.green {
+  background-color: rgb(125, 213, 125);
+}
+
+.triangle-up.green::before {
+  border-bottom: 12px solid rgb(125, 213, 125);
 }
 
 .tuner-frame {
