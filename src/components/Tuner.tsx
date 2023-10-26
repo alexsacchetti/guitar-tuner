@@ -2,6 +2,7 @@ import React, { memo, useEffect, useRef, useState } from 'react'
 import { getTuningInfo, initAudio, initTuner } from '@ddlab/tuner'
 import { lookup } from 'dns'
 import { motion } from 'framer-motion'
+import AudioBars from './AudioBars'
 
 const Tune: React.FC<{}> = (props) => {
   const [displayNote, setDisplayNote] = useState<string>('...')
@@ -31,6 +32,7 @@ const Tune: React.FC<{}> = (props) => {
         setDisplayCents(cents)
         setRotate(cents)
         setDisplayTune(isInTune)
+        setIsTuning(true)
         if (isInTune) {
           setIsTune('In Tune!!!')
         } else {
@@ -41,19 +43,19 @@ const Tune: React.FC<{}> = (props) => {
     loop()
   }
 
-  // useEffect(() => {
-  //   console.log(isTuning, loopId)
-  // }, [isTuning, loopId])
-
-  // const getAudioStream = () => {
-  //   console.log('STARRRRRTT GOOO GOOO GOOOO')
-  //   initAudioStream()
-  // }
-
   const endAudioStream = () => {
     console.log('ending the audio stream!!!')
-    // setIsTuning(false)
+    setIsTuning(false)
     cancelAnimationFrame(loopId)
+
+    // useEffect(() => {
+    //   console.log(isTuning, loopId)
+    // }, [isTuning, loopId])
+
+    // const getAudioStream = () => {
+    //   console.log('STARRRRRTT GOOO GOOO GOOOO')
+    //   initAudioStream()
+    // }
   }
   // // This is the tuner widget
   //   useEffect(() => {
@@ -69,11 +71,14 @@ const Tune: React.FC<{}> = (props) => {
         {/* <div className="audio" ref={audioShow}></div> */}
         <div className="container">
           <div className="tuneNote">{displayNote}</div>
-          <div className="animate">
-            <div>
-              <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
+          <div className="tuner-frame">
+            <div className="animate">
+              <div>
+                <motion.div className="triangle-up" animate={{ rotate }} transition={{ type: 'spring' }} />
+              </div>
             </div>
           </div>
+          <AudioBars isAnimating={isTuning} />
           <div className="tunerInfo">
             {displayCents} cents <br></br>
             {isTune}
