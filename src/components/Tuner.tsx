@@ -13,6 +13,7 @@ const Tune: React.FC<{}> = (props) => {
   const [isTuning, setIsTuning] = useState<boolean>(false)
   const [deltaState, setDeltaState] = useState<any>()
   const [rotate, setRotate] = useState<any>('')
+  const [isPressed, setIsPressed] = useState(false)
 
   // const audioShow = useRef(null)
 
@@ -47,57 +48,84 @@ const Tune: React.FC<{}> = (props) => {
     console.log('ending the audio stream!!!')
     setIsTuning(false)
     cancelAnimationFrame(loopId)
-
-    // useEffect(() => {
-    //   console.log(isTuning, loopId)
-    // }, [isTuning, loopId])
-
-    // const getAudioStream = () => {
-    //   console.log('STARRRRRTT GOOO GOOO GOOOO')
-    //   initAudioStream()
-    // }
   }
-  // // This is the tuner widget
-  //   useEffect(() => {
-  //     initCheck()
-  //   }, [])
-  //   const initCheck = () => {
-  //     initTuner(audioShow.current)
-  //   }
+
+  const toggleAudioStream = () => {
+    if (isTuning) {
+      endAudioStream()
+    } else {
+      initAudioStream()
+    }
+    setIsTuning(!isTuning)
+    setIsPressed(!isPressed)
+  }
 
   return (
-    <div>
-      <div className="frame">
-        {/* <div className="audio" ref={audioShow}></div> */}
-        <div className="container">
-          <div className="tuneNote">{displayNote}</div>
-          <div className="tuner-frame">
+    <div className="tuner-container">
+      <div className="tuner">
+        <div className="screen">
+          {/* Existing tuner elements */}
+          <div className="displayNote">{displayNote}</div>
+          <div className="">
             <div className="animate">
               <div>
                 <motion.div
                   className={`triangle-up ${isTune ? 'green' : ''}`}
+                  initial={{ rotate: 0 }}
                   animate={{ rotate }}
                   transition={{ type: 'spring' }}
                 />
               </div>
             </div>
           </div>
+          <div>{displayCents}</div>
           <AudioBars isAnimating={isTuning} />
-          <div className="tunerInfo">
-            {displayCents} cents <br></br>
-            {isTune}
-          </div>
-          <div className="button-container">
-            <button className="button" type="button" onClick={initAudioStream}>
-              Start
-            </button>
-            <button className="button" type="button" onClick={endAudioStream}>
-              Stop
-            </button>
-          </div>
+        </div>
+        <div
+          className={`footswitch ${isPressed ? 'pressed' : ''}`}
+          onMouseDown={() => setIsPressed(true)}
+          onMouseUp={() => setIsPressed(false)}
+          onMouseLeave={() => setIsPressed(false)}
+        >
+          <button className="button" type="button" onClick={toggleAudioStream}>
+            {isTuning ? 'Stop' : 'Start'}
+          </button>
         </div>
       </div>
     </div>
+
+    // <div>
+    //   <div className="frame">
+    //     {/* <div className="audio" ref={audioShow}></div> */}
+    //     <div className="container">
+    // <div className="tuneNote">{displayNote}</div>
+    // <div className="tuner-frame">
+    //   <div className="animate">
+    //     <div>
+    //       <motion.div
+    //         className={`triangle-up ${isTune ? 'green' : ''}`}
+    //         animate={{ rotate }}
+    //         transition={{ type: 'spring' }}
+    //       />
+    //     </div>
+    //   </div>
+    // </div>
+    //       <AudioBars isAnimating={isTuning} />
+    //       <div className="tunerInfo">
+    //         {displayCents} cents <br></br>
+    //         {isTune}
+    //       </div>
+    // <div className="button-container">
+    //   <button className="button" type="button" onClick={initAudioStream}>
+    //     Start
+    //   </button>
+    //   <button className="button" type="button" onClick={endAudioStream}>
+    //     Stop
+    //   </button>
+    // </div>
+    //     </div>
+    //   </div>
+    // </div>
   )
 }
 

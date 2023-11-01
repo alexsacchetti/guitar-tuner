@@ -1,11 +1,9 @@
-import React from 'react';
-import './App.css';
-import Tune from './components/Tuner';
+import React from 'react'
+import './App.scss'
+import Tune from './components/Tuner'
 
 function App() {
-  return (
-    <Tune />
-  );
+  return <Tune />
 }
 
-export default App;
+export default App
