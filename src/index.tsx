@@ -11,6 +11,3 @@ root.render(<App />)
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()
-
-// if npm run build is failing due to node sass issue, run the following command:
-// npm rebuild node-sass

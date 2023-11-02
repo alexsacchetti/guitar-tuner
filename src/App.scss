@@ -1,5 +1,6 @@
 body {
   background-color: rgb(165, 182, 199);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .frame {
@@ -174,6 +175,7 @@ body {
 .tuner-container {
   perspective: 1000px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -249,4 +251,10 @@ body {
 
 .displayNote {
   font-size: 75px;
+}
+
+.tuner-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
 }

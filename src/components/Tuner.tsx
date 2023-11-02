@@ -62,6 +62,7 @@ const Tune: React.FC<{}> = (props) => {
 
   return (
     <div className="tuner-container">
+      <div className="tuner-title">Instrument Tuner</div>
       <div className="tuner">
         <div className="screen">
           {/* Existing tuner elements */}
