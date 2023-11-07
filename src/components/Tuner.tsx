@@ -84,6 +84,25 @@ const Tune: React.FC<{}> = (props) => {
   const leftHue = getHue(Math.max(-50, Math.min(0, displayCents)), true)
   const rightHue = getHue(Math.max(0, Math.min(50, displayCents)), false)
 
+  const needleAngle = (cents: number) => {
+    // Define the angle range for your needle here, for example, -45 to 45 degrees
+    const minAngle = -45 // Angle when cents is at -50
+    const maxAngle = 45 // Angle when cents is at 50
+    const minCents = -50
+    const maxCents = 50
+
+    // If there's no input, return 0 so the needle points straight up
+    if (cents === null || cents === undefined) return 0
+
+    // Map the cents value to an angle within the defined range
+    const angle = ((cents - minCents) / (maxCents - minCents)) * (maxAngle - minAngle) + minAngle
+
+    // When cents is 0, this will return an angle of 0 degrees
+    return angle
+  }
+
+  const needleRotate = needleAngle(displayCents) // Replace `displayCents` with the actual value you're using
+
   return (
     <div className="tuner-container">
       <div className="tuner-title">Instrument Tuner</div>
@@ -114,8 +133,8 @@ const Tune: React.FC<{}> = (props) => {
                 <motion.div
                   className={`triangle-up ${isTune ? 'green' : ''}`}
                   initial={{ rotate: 0 }}
-                  animate={{ rotate }}
-                  transition={{ type: 'spring' }}
+                  animate={{ rotate: needleRotate }}
+                  transition={{ type: 'spring', stiffness: 100 }}
                 />
               </div>
             </div>
