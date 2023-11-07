@@ -60,6 +60,30 @@ const Tune: React.FC<{}> = (props) => {
     setIsPressed(!isPressed)
   }
 
+  // const getHue = (displayCents: number) => {
+  //   const minCents = -50
+  //   const maxCents = 50
+  //   const hue = ((displayCents - minCents) / (maxCents - minCents)) * 120 // 120 is the hue for green in HSL
+  //   return hue
+  // }
+
+  // const leftHue = getHue(Math.max(-50, Math.min(0, displayCents)))
+  // const rightHue = getHue(Math.max(0, Math.min(50, displayCents)))
+
+  const getHue = (displayCents: number, isLeft: boolean) => {
+    const minCents = isLeft ? -50 : 0
+    const maxCents = isLeft ? 0 : 50
+    // For the left arc, the hue should go from 0 (red) at -50 to 120 (green) at 0
+    // For the right arc, the hue should go from 120 (green) at 0 to 0 (red) at 50
+    const hue = isLeft
+      ? ((displayCents - minCents) / (maxCents - minCents)) * 120
+      : 120 - ((displayCents - minCents) / (maxCents - minCents)) * 120
+    return hue
+  }
+
+  const leftHue = getHue(Math.max(-50, Math.min(0, displayCents)), true)
+  const rightHue = getHue(Math.max(0, Math.min(50, displayCents)), false)
+
   return (
     <div className="tuner-container">
       <div className="tuner-title">Instrument Tuner</div>
@@ -69,6 +93,23 @@ const Tune: React.FC<{}> = (props) => {
           <div className="displayNote">{displayNote}</div>
           <div className="">
             <div className="animate">
+              <svg width="400" height="200">
+                <path
+                  id="leftArc"
+                  d="M200,100 A100,100 0 0,0 100,200"
+                  fill="none"
+                  stroke={`hsl(${leftHue}, 100%, 50%)`}
+                  strokeWidth="10"
+                />
+                <path
+                  id="rightArc"
+                  d="M200,100 A100,100 0 0,1 300,200"
+                  fill="none"
+                  stroke={`hsl(${rightHue}, 100%, 50%)`}
+                  strokeWidth="10"
+                />
+              </svg>
+
               <div>
                 <motion.div
                   className={`triangle-up ${isTune ? 'green' : ''}`}
